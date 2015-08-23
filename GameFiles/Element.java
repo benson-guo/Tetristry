@@ -4,18 +4,19 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- *This class is a template for an Element object.
+ * Creates element objects that consist of a name and image.
+ * These will be used by the GameBoard to check for compounds.
  * 
  * @author Benson Guo
  * @version 1.2, May 22th, 2014
  */
 public class Element
 {
-  /*
+  /**
    *BufferedImage variable for picture of element. 
    */
   private BufferedImage pic;
-  /*
+  /**
    *String variable for element symbol. 
    */
   private String name;
@@ -38,7 +39,7 @@ public class Element
     {} 
   }
   
-  /*
+  /**
    *Accessor method for element name.
    * 
    * @return the name of the element
@@ -48,7 +49,7 @@ public class Element
     return name;
   }
   
-  /*
+  /**
    *Accessor method for element BufferedImage. 
    * 
    * @return the image of the element

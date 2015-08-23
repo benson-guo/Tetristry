@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class TetristryApp extends JFrame implements ActionListener
 {
-  /*
+  /**
    * Stores user choice when asked to quit.
    **/
   static int result; 
@@ -56,8 +56,39 @@ public class TetristryApp extends JFrame implements ActionListener
   /**
    * Checks if the gameboard is paused or not.
    */
-  static boolean pauseGB;
-  
+  static boolean  pauseGB;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem quitItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem printScoreItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem highscoreItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem helpMeItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem instructionsItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem tutorialItem;
+  /**
+   * Allows access to JMenuItem methods.
+   */
+  static JMenuItem aboutItem;
+  /**
+   * Checks if the menu items are disabled or enabled
+   */
+  static boolean enableMI;
   
   /**
    * Constructor which sets up the file and help menubar, and the frame.
@@ -71,13 +102,6 @@ public class TetristryApp extends JFrame implements ActionListener
    * The frame is set visible.
    * A windowlistener is added.
    *
-   * @param quitItem-reference variable for JMenuItem for "Quit".
-   * @param highscoreItem-reference variable for JMenuItem for "Highscore".
-   * @param printScoreItem-reference variable for JMenuItem for "Print Highscore".
-   * @param helpMeItem-reference variable for JMenuItem for "Help Me".
-   * @param instructionsItem-reference variable for JMenuItem for "Instructions".
-   * @param tutorialItem-reference variable for JMenuItem for "Tutorial".
-   * @param aboutItem-reference variable for JMenuItem for "About".
    * @param fileMenu-reference variable for JMenu item "File".
    * @param helpMenu-reference variable for JMenu item "Help".
    * @param myMenus-reference variable for JMenuBar item.
@@ -87,15 +111,13 @@ public class TetristryApp extends JFrame implements ActionListener
   public TetristryApp ()
   {
     super ("Tetristry");
-    
-    JMenuItem quitItem = new JMenuItem ("Quit");
-    JMenuItem printScoreItem = new JMenuItem ("Print Highscore");
-    JMenuItem highscoreItem = new JMenuItem ("Highscore");
-    JMenuItem helpMeItem = new JMenuItem ("Help Me");
-    JMenuItem instructionsItem = new JMenuItem ("Instructions");
-    JMenuItem tutorialItem = new JMenuItem ("Tutorial");
-    JMenuItem aboutItem = new JMenuItem ("About");
-    
+    quitItem = new JMenuItem ("Quit");
+    printScoreItem = new JMenuItem ("Print Highscore");
+    highscoreItem = new JMenuItem ("Highscore");
+    helpMeItem = new JMenuItem ("Help Me");
+    instructionsItem = new JMenuItem ("Instructions"); 
+    tutorialItem = new JMenuItem ("Tutorial");
+    aboutItem = new JMenuItem ("About");
     JMenu fileMenu = new JMenu ("File");
     JMenu helpMenu = new JMenu ("Help");
     
@@ -124,6 +146,13 @@ public class TetristryApp extends JFrame implements ActionListener
     helpMeItem.addActionListener (this);
     aboutItem.addActionListener (this);
     tutorialItem.addActionListener (this);
+    
+    highscoreItem.setEnabled (false);
+    instructionsItem.setEnabled (false);
+    printScoreItem.setEnabled (false);
+    helpMeItem.setEnabled (false);
+    aboutItem.setEnabled (false);
+    tutorialItem.setEnabled (false);
     
     try
     {
@@ -162,18 +191,43 @@ public class TetristryApp extends JFrame implements ActionListener
     this.addWindowListener (windowListener);
   }
   
+  /**
+   * Enables or disables the menu items.
+   */
+  static public void enableDisableMenuItems ()
+  {
+    if (enableMI)
+    {
+      highscoreItem.setEnabled (true);
+      instructionsItem.setEnabled (true);
+      printScoreItem.setEnabled (true);
+      helpMeItem.setEnabled (true);
+      aboutItem.setEnabled (true);
+      tutorialItem.setEnabled (true);
+    }
+    else
+    {
+      highscoreItem.setEnabled (false);
+      instructionsItem.setEnabled (false);
+      printScoreItem.setEnabled (false);
+      helpMeItem.setEnabled (false);
+      aboutItem.setEnabled (false);
+      tutorialItem.setEnabled (false);
+    }
+  }
   
-  /** The actionPerformed method calls methods based on the menubar choices clicked by the user through an if statement.
-    * If the "Quit" option is clicked the program will exit.
-    * If the "Tutorial" option is clicked the program will display the tutorial panel.
-    * If the "About" option is clicked the program will pause the game and display the about dialog.
-    * If the "Instructions" option is clicked the program will display the instructions panel.
-    * If the "Highscore" option is clicked the program will display the highscore panel.
-    * If the "Print Highscore" option is clicked the program will pause the game and ask the user to confirm.
-    * If the "Help Me" option is clicked the program will display the CHM Help file.
-    * 
-    * @param ae-reference variable for ActionEvent.
-    */
+  /** 
+   * The actionPerformed method calls methods based on the menubar choices clicked by the user through an if statement.
+   * If the "Quit" option is clicked the program will exit.
+   * If the "Tutorial" option is clicked the program will display the tutorial panel.
+   * If the "About" option is clicked the program will pause the game and display the about dialog.
+   * If the "Instructions" option is clicked the program will display the instructions panel.
+   * If the "Highscore" option is clicked the program will display the highscore panel.
+   * If the "Print Highscore" option is clicked the program will pause the game and ask the user to confirm.
+   * If the "Help Me" option is clicked the program will display the CHM Help file.
+   * 
+   * @param ae-reference variable for ActionEvent.
+   */
   public void actionPerformed (ActionEvent ae)
   {
     if (ae.getActionCommand ().equals ("Quit"))
@@ -196,13 +250,13 @@ public class TetristryApp extends JFrame implements ActionListener
       else 
         new About ();
     }
-    
     else if (ae.getActionCommand ().equals ("Instructions"))
       instructionsPanel();
-    
     else if (ae.getActionCommand ().equals ("Highscore"))
+    {
       highScorePanel();
-    
+      h.displayHighscore();
+    }
     else if (ae.getActionCommand ().equals ("Print Highscore"))
     {
       if (currentPanel =='g')
@@ -216,7 +270,6 @@ public class TetristryApp extends JFrame implements ActionListener
       else 
         h.printHighscore ();
     }
-    
     else
     {
       File file = new File("../HelpFile/Tetristry Help-Me.chm");
@@ -427,9 +480,12 @@ public class TetristryApp extends JFrame implements ActionListener
   /**
    * Static method used by panel classes to remove the current panel, 
    * access the menu panel and set the current panel as the menu panel. 
+   * During this time, the menu items are enabled.
    */
   static public void menuPanel ()
   {
+    enableMI = true; 
+    enableDisableMenuItems ();
     if (currentPanel != ' ')
       changePanel (currentPanel);
     m = new Menu ();

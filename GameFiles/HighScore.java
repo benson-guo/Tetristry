@@ -6,11 +6,9 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-
 /**
- *This manages and manipulates the highscore of the game.
+ * This manages and manipulates the highscore of the game.
  * The highscore will be dispalyed on the JPanel through a JLabel.
- * Extends JPanel
  *
  * @author Richard Dang and Benson Guo 
  * @version 2.3, May 16th, 2014
@@ -18,43 +16,43 @@ import javax.imageio.ImageIO;
 
 public class HighScore extends JPanel implements ActionListener
 {
-  /*
+  /**
    * String ArrayList to store the names of the highscores from highest to lowest.
    **/
   private ArrayList < String > highscoreNames = new ArrayList < String > ();
-  /*
+  /**
    * Integer ArrayList to store the highscore values from highest to lowest.
    **/
   private ArrayList < Integer > highscoreValues = new ArrayList < Integer > ();
-  /*
+  /**
    * String ArrayList to store the highscore levels from highest to lowest.
    **/
   private ArrayList < String > highscoreLevels = new ArrayList < String > ();
-  /*
+  /**
    * Reference variable for BufferedImage used for background.
    **/
   private BufferedImage backgroundImage;
-  /*
+  /**
    * Reference variable for JButton used to print highscores.
    **/
   private JButton printButton;
-  /*
+  /**
    * Reference variable for JButton used to return to main menu.
    **/
   private JButton returnButton;
-  /*
+  /**
    * Reference variable for JButton used to reset highscores.
    **/
   private JButton resetButton;
-  /*
+  /**
    * Reference variable for PrintWriter used to save highscores to text file.
    **/
   private PrintWriter out;
-  /*
+  /**
    * int variable used to store user choice.
    **/
   private int result;
-  /*
+  /**
    * Reference variable for JLabel for highscore information.
    **/
   private JLabel scoreName;
@@ -91,16 +89,17 @@ public class HighScore extends JPanel implements ActionListener
   }
   
   
-  /**The readHighscore method reads the highscore list from a text file ("Highscore.rbcs") with Scanner.
-    * The text is read within a try block to catch for IOExceptions and NoSuchElementExceptions.
-    * If the header is not valid, a new highscore file will be created.
-    *
-    * @param s-reference variable for Scanner.
-    * @param x-int variable for loop to read text.
-    * @param e-variable to catch for IOException and NoSuchElementException.
-    * @throws IOException Thrown to indication a error when reading from highscore file.
-    * @throws NoSuchElementException Thrown to indication a error when reading from highscore file.
-    */
+  /**
+   * The readHighscore method reads the highscore list from a text file ("Highscore.rbcs") with Scanner.
+   * The text is read within a try block to catch for IOExceptions and NoSuchElementExceptions.
+   * If the header is not valid, a new highscore file will be created.
+   *
+   * @param s-reference variable for Scanner.
+   * @param x-int variable for loop to read text.
+   * @param e-variable to catch for IOException and NoSuchElementException.
+   * @throws IOException Thrown to indication a error when reading from highscore file.
+   * @throws NoSuchElementException Thrown to indication a error when reading from highscore file.
+   */
   public void readHighscore ()
   {
     try
@@ -116,10 +115,7 @@ public class HighScore extends JPanel implements ActionListener
         }
       }
       else
-      {  
         createHighscoreFile ();
-      }
-      
     }
     catch (IOException e)
     {
@@ -127,11 +123,10 @@ public class HighScore extends JPanel implements ActionListener
     }
     catch (NoSuchElementException e)
     {
-    //  createHighscoreFile ();
     }
   }
   
-  /*
+  /**
    * Creates a new highscore with extension rbcs, and a header.
    * 
    *  @param e-variable to catch for IOException and NoSuchElementException.
@@ -151,14 +146,15 @@ public class HighScore extends JPanel implements ActionListener
   }
   
   
-  /**The saveHighscore method saves the highscore list to a text file ("Highscore.rbcs") with PrintWriter.
-    * The text is written within a try block to catch for IOExceptions.
-    *
-    * @param out-reference variable for PrintWriter.
-    * @param x-int variable for loop to write text.
-    * @param e-variable to catch for IOException.
-    * @throws IOException Thrown to indication a error when writing to highscore file.
-    */
+  /**
+   * The saveHighscore method saves the highscore list to a text file ("Highscore.rbcs") with PrintWriter.
+   * The text is written within a try block to catch for IOExceptions.
+   *
+   * @param out-reference variable for PrintWriter.
+   * @param x-int variable for loop to write text.
+   * @param e-variable to catch for IOException.
+   * @throws IOException Thrown to indication a error when writing to highscore file.
+   */
   public void saveHighscore ()
   {
     try
@@ -177,16 +173,17 @@ public class HighScore extends JPanel implements ActionListener
   }
   
   
-  /**The insertScore method inserts a score into the highscores, if the score is high enough, which is checked with an if statement.
-    * The loop goes through the ArrayList of scores from highest to lowest, and inserts at the index if the new score is higher.
-    * If the score is lower than the 10th score, than no action is done.
-    * The panel is updated with the new highscores.
-    *
-    * @param x-int variable for loop to go through score ArrayList.
-    * @param score-int variable passed in for score.
-    * @param name-String variable passed in for player name.
-    * @param level-String varaible passed in for level.
-    */
+  /**
+   * The insertScore method inserts a score into the highscores, if the score is high enough, which is checked with an if statement.
+   * The loop goes through the ArrayList of scores from highest to lowest, and inserts at the index if the new score is higher.
+   * If the score is lower than the 10th score, than no action is done.
+   * The panel is updated with the new highscores.
+   *
+   * @param x-int variable for loop to go through score ArrayList.
+   * @param score-int variable passed in for score.
+   * @param name-String variable passed in for player name.
+   * @param level-String varaible passed in for level.
+   */
   public void insertScore (int score, String name, String level)
   {
     for (int x = 0 ; x < highscoreValues.size () ; x++)
@@ -221,18 +218,19 @@ public class HighScore extends JPanel implements ActionListener
   }
   
   
-  /**The displayHighscore method displays the highscore list on the panel.
-    * The title and header JLabels and set to the required locations.
-    * A for loop goes through the 3 instance ArrayLists and displays the score information on the screen through a JLabel.
-    * An if statement checks to ensure that the highscore file is not corrupted. 
-    *
-    * @param scoreName-reference variable for JLabel for score information.
-    * @param rank-int varaible for rank.
-    * @param font-reference variable for Font of score information.
-    * @param x-int variable for for loop.
-    * @param y-int variable for for loop.
-    * @param z-int variable for for loop.
-    */
+  /**
+   * The displayHighscore method displays the highscore list on the panel.
+   * The title and header JLabels and set to the required locations.
+   * A for loop goes through the 3 instance ArrayLists and displays the score information on the screen through a JLabel.
+   * An if statement checks to ensure that the highscore file is not corrupted. 
+   *
+   * @param scoreName-reference variable for JLabel for score information.
+   * @param rank-int varaible for rank.
+   * @param font-reference variable for Font of score information.
+   * @param x-int variable for for loop.
+   * @param y-int variable for for loop.
+   * @param z-int variable for for loop.
+   */
   public void displayHighscore ()
   {
     if (highscoreValues.size()!=highscoreNames.size()||highscoreLevels.size()!=highscoreValues.size())
@@ -292,14 +290,15 @@ public class HighScore extends JPanel implements ActionListener
   }
   
   
-  /**The highscoreOptions method sets up the background and buttons.
-    *
-    * @param print-BufferedImage variable for print button.
-    * @param returns-BufferedImage variable for return to menu button.
-    * @param reset-BufferedImage variable for reset highscore button.
-    * @param e-variable to catch for IOException.
-    * @throws IOException Thrown to indication a error when reading image file.
-    */
+  /**
+   * The highscoreOptions method sets up the background and buttons.
+   *
+   * @param print-BufferedImage variable for print button.
+   * @param returns-BufferedImage variable for return to menu button.
+   * @param reset-BufferedImage variable for reset highscore button.
+   * @param e-variable to catch for IOException.
+   * @throws IOException Thrown to indication a error when reading image file.
+   */
   public void highscoreOptions ()
   {
     try

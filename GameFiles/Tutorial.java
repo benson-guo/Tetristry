@@ -17,27 +17,27 @@ public class Tutorial extends JPanel implements ActionListener
   /**
    * Allows access to BufferedImage methods .
    */
-  BufferedImage backgroundImage;
+  private BufferedImage backgroundImage;
   /**
    * Allows access to BufferedImage methods .
    */
-  BufferedImage backgroundImage2;
+  private BufferedImage backgroundImage2;
   /**
    * Allows access to JButton methods .
    */
-  JButton returnButton;
+  private JButton returnButton;
   /**
    * Allows access to JButton methods .
    */
-  JButton nextButton;
+  private JButton nextButton;
   /**
    * Allows access to JButton methods .
    */
-  JButton previousButton;
+  private JButton previousButton;
   /**
    * Used to change the background image.
    */
-  boolean changeBackground;
+  private boolean changeBackground;
   
   /**
    * Class constructor that sets the layout to null, draws the background image and creates
@@ -76,7 +76,6 @@ public class Tutorial extends JPanel implements ActionListener
    * @param previous BufferedImage: Allows access to BufferedImage methods.
    * @param e reference: Allows access to IOException methods.
    * @throws IOException Thrown to indicate an error when reading an image.
-   * 
    */
   public void tutorialOptions ()
   {

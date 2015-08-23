@@ -16,27 +16,27 @@ public class SplashScreen extends JPanel implements Runnable
   /**
    * Allows access to BufferedImage methods.
    */
-  BufferedImage backgroundImage;
+  private BufferedImage backgroundImage;
   /**
    * Allows access to JLabel methods.
    */
-  JLabel label;
+  private JLabel label;
   /**
    * Allows access to JLabel methods.
    */
-  JLabel element;
+  private JLabel element;
   /**
    * Allows access to JLabel methods.
    */
-  JLabel element2;
+  private JLabel element2;
   /**
    * Allows access to JLabel methods.
    */
-  JLabel element3;
+  private JLabel element3;
   /**
    * Allows access to JProgressBar methods.
    */
-  JProgressBar progressBar;
+  private JProgressBar progressBar;
   
   /**
    * Class constructor that draws the background and progress bar of the splashscreen.

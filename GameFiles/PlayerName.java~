@@ -136,7 +136,8 @@ public class PlayerName implements ActionListener
   /**
    * Uses action listener to check if one of the buttons are pressed
    * and performs the action assosiated with it.
-   * Continue allows the player to continue to the game
+   * During this time, the menu items are enabled.
+   * Continue allows the player to continue to the game.
    * 
    * @param ae ActionEvent: allows access to ActionEvent methods
    */
@@ -144,6 +145,8 @@ public class PlayerName implements ActionListener
   {
     if (ae.getSource() == continueButton) 
     {   
+      TetristryApp.enableMI = false;
+      TetristryApp.enableDisableMenuItems();
       continueToGame ();
     }
     else nameDialog ();

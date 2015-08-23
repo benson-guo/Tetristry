@@ -23,11 +23,11 @@ public class Time implements ActionListener
   /**
    * Stores the minutes remaining in the game preset to 3.
    */
-  int minutes = 3;
+  int minutes = 0;
   /**
    * Stores the minutes remaining in the game preset to 1.
    */
-  int seconds = 1;
+  int seconds = 30;
   
   /**
    * Class constructor which begins the timer with a 1 second delay inbetween
@@ -51,10 +51,14 @@ public class Time implements ActionListener
     time.setForeground (Color.WHITE);
     time.setBounds(new Rectangle(new Point(670, 160), time.getPreferredSize())); 
     
-    if (minutes == 0 && seconds ==0)
-      t.stop ();
+    if (minutes <= 0 && seconds <=0)
+    {
+      minutes=0;
+      seconds=0;
+      return;
+    }
     
-    if (--seconds < 0)
+    if (--seconds < 0&&minutes>0)
     {
       seconds = 59;
       minutes--;

@@ -48,18 +48,18 @@ public class ElementList
   {
     try
     {
-      s=new Scanner (new File("../Elements+Compounds/Metals.txt"));
+      s=new Scanner (new File("../ElementsAndCompounds/Metals.txt"));
       while (s.hasNextLine())
       {
         metals.add (s.nextLine());
       }
-      s=new Scanner (new File("../Elements+Compounds/Non-metals.txt"));
+      s=new Scanner (new File("../ElementsAndCompounds/NonMetals.txt"));
       while (s.hasNextLine())
       {
         nonMetals.add (s.nextLine());
       }
-      s=new Scanner (new File("../Elements+Compounds/Compounds.txt"));
-      t=new Scanner (new File("../Elements+Compounds/Compound-symbols.txt"));
+      s=new Scanner (new File("../ElementsAndCompounds/Compounds.txt"));
+      t=new Scanner (new File("../ElementsAndCompounds/CompoundSymbols.txt"));
       while (s.hasNextLine())
       {
         compounds.put (t.nextLine(),s.nextLine());

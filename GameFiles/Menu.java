@@ -22,14 +22,11 @@ public class Menu extends JPanel implements ActionListener
   /**
    * Allows access to BufferedImage methods.
    */
-  BufferedImage backgroundImage;
-  
-  /*
+  private BufferedImage backgroundImage;
+  /**
    * Array of JButtons for gameboard buttons.
    */
-  JButton [] menuItems = new JButton [5];
-  
-  
+  private JButton [] menuItems = new JButton [5];
   
   /**
    * Class constructor that sets the layout of the panel to null, 

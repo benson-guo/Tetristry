@@ -2,34 +2,35 @@ import java.util.*;
 import java.io.*;
 
 /**
- *This class sets up the arraylist for all compounds and elements, which are read in from a text file.
+ * This class sets up the arraylist for all compounds and elements, which are read in from multiple text files.
  * 
  * @author Benson Guo
  * @version 1.5, May 22th, 2014
  */
 public class ElementList
 {
-  /*
+  /**
    * ArrayList of Strings to store metal symbols.
    */
   private ArrayList <String> metals=new ArrayList <String>();
-  /*
+  /**
    * ArrayList of Strings to store non-metal symbols.
    */
   private ArrayList <String> nonMetals=new ArrayList <String>();
-  /*
+  /**
    * Hashmap that maps compound symbol strings to compound names.
    */
   private Map<String,String> compounds = new HashMap<String,String>();
-  /*
+  /**
    * Scanner reference variable 1.
    */
   private Scanner s;
-  /*
+  /**
    * Scanner reference variable 2.
    */
   private Scanner t;  
-  /*
+  
+  /**
    * Constructor that calls readFiles method.
    */
   public ElementList ()
@@ -37,7 +38,7 @@ public class ElementList
     readFiles();
   }
   
-  /*
+  /**
    * This method reads the text files of the compounds and elements and stores them in the instance level arraylists.
    * 
    * @param e-variable to catch for IOException, NoSuchElementException.
@@ -69,7 +70,7 @@ public class ElementList
     catch (NoSuchElementException e) {}
   }
   
-  /*
+  /**
    * This method generates a random element for the gameboard. Math.random () is used to pick either a metal or a non-metal, and select one of them at random.
    * 
    * @param symbol-String variable for the compound symbol name.
@@ -93,10 +94,10 @@ public class ElementList
     return new Element(symbol);
   }
   
-  /*
+  /**
    * String return method that returns the correct compound name that corresponds to a symbol.
    * 
-   * @param compoundSymbol-String variable for the symbol of the compound the user is naming.
+   * @param compoundSymbol-tring variable for the symbol of the compound the user is naming.
    * @return the compound name corresponding to the passed in symbol
    */
   public String checkCompound(String compoundSymbol)
@@ -104,7 +105,7 @@ public class ElementList
     return compounds.get(compoundSymbol);
   }
   
-  /*
+  /**
    * Boolean return method that returns whether or not two elements can form a compound. One element must be a non-metal, and one a metal.The if statements also checks to make sure the elements are not null and are not barriers.
    * 
    * @param a-parameter passed in for 1st element.
@@ -122,7 +123,7 @@ public class ElementList
     return true;
   }
   
-  /*
+  /**
    * Boolean return method that returns whether or not an element is a metal. It checks the metal list for the element name.
    * 
    * @param e-parameter passed in for element.

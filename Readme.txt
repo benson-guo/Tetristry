@@ -5,7 +5,7 @@ INSTALLATION
 
 	Before installing Tetristry, it is recommended that you update to the latest version of Java.
 	To begin, insert the game disc into a disc drive. Next, the installer should automatically launch.
-	If not, launch the setup "Tetristry.exe" located in the disc.
+	If not, launch the setup "TetristrySetup.exe" located in the disc.
  	Finally, follow the installer instructions to install the program. 
 	If you would like to uninstall, find the installation folder and run the uninstaller exe.
 

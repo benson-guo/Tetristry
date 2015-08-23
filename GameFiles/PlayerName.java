@@ -17,15 +17,15 @@ public class PlayerName implements ActionListener
   /**
    * Allows access to JButton methods.
    */
-  JButton continueButton;
+  private JButton continueButton;
   /**
    * Allows access to JDialog methods.
    */
-  JDialog d;
+  private JDialog d;
   /**
    * Allows access to JTextField methods.
    */
-  JTextField tField;
+  private JTextField tField;
   /**
    * Stores the player's name.
    */
@@ -33,7 +33,7 @@ public class PlayerName implements ActionListener
   /**
    * Checks if the enter key has been pressed.
    */
-  KeyEventDispatcher key;
+  private KeyEventDispatcher key;
   
   
   /**
@@ -42,6 +42,8 @@ public class PlayerName implements ActionListener
    */
   public PlayerName ()
   {
+    TetristryApp.enableMI = false;
+    TetristryApp.enableDisableMenuItems();
     nameDialog();
     enterKey();
   }
@@ -128,6 +130,8 @@ public class PlayerName implements ActionListener
       KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(key);
       d.dispose();
       TetristryApp.gamePanel();
+       TetristryApp.enableMI = true;
+      TetristryApp.enableDisableMenuItems();
     }
     else 
       tField.setText ("");
@@ -136,14 +140,15 @@ public class PlayerName implements ActionListener
   /**
    * Uses action listener to check if one of the buttons are pressed
    * and performs the action assosiated with it.
-   * Continue allows the player to continue to the game
+   * During this time, the menu items are enabled.
+   * Continue allows the player to continue to the game.
    * 
    * @param ae ActionEvent: allows access to ActionEvent methods
    */
   public void actionPerformed (ActionEvent ae)
   {
     if (ae.getSource() == continueButton) 
-    {   
+    {
       continueToGame ();
     }
     else nameDialog ();

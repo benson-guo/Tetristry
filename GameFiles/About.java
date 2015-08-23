@@ -6,8 +6,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 /**
- *This class is for the about dialog.
- * Extends JPanel
+ * Creates an about dialog that will display information about the programmers of Tetristry.
  * 
  * @author Richard Dang
  * @version 1.1, May 22th, 2014
@@ -15,12 +14,12 @@ import java.io.*;
 public class About implements ActionListener
 {
   /**
-   *Reference variable for JDialog.
+   * Reference variable for JDialog.
    */
   private JDialog d;
-  /*
-   *Reference variable for JLabel used for close dialog button.
-   **/
+  /**
+   * Reference variable for JLabel used for close dialog button.
+   */
   private JButton continueButton;
   
   /**
@@ -33,7 +32,7 @@ public class About implements ActionListener
   
   /**
    *This method creates and sets up the about dialog.The buttons and logo are read in from an image file.
-   * The logo is enlarged and made transparent.
+   *The logo is enlarged and made transparent.
    * 
    * @param dLabel-reference variable for label to display text.
    * @param logo-BufferedImage variable for logo.

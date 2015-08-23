@@ -15,17 +15,15 @@ import java.util.*;
  */
 public class LevelSelection extends JPanel implements ActionListener
 {
-  /*
+  /**
    *BufferedImage variable for background image of panel.
    **/
-  BufferedImage backgroundImage;
-  /*
+  private BufferedImage backgroundImage;
+  /**
    * Array of JButtons for gameboard buttons.
    */
-  JButton [] menuItems = new JButton [4];
-  
-  
-  /*
+  private JButton [] menuItems = new JButton [4];
+  /**
    * static int variable for the difficulty selected.
    **/
   static int difficulty;
@@ -126,7 +124,6 @@ public class LevelSelection extends JPanel implements ActionListener
       new PlayerName();
     }
   }
-  
   
   /**
    * Overridden method that draws a background image onto the the JPanel.

@@ -1,4 +1,4 @@
 [autorun]
-open=Tetristry.exe
-icon=Images\TetristryIcon.ico
+open=TetristrySetup.exe
+icon=TetristryIcon.ico
 label=Tetristry

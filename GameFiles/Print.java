@@ -19,15 +19,15 @@ import java.io.*;
  */
 public class Print implements Printable
 {
-  /*
+  /**
    * Stores the a list of string to print.
    */
   private ArrayList <String> list;
-  /*
+  /**
    * Checks if a new line should be added.
    */
   private boolean newLine;
-  /*
+  /**
    * Used in the printable interface.
    */
   private int y;
@@ -164,7 +164,7 @@ public class Print implements Printable
     return PAGE_EXISTS;
   }
   
-  /*
+  /**
    * Constructor that sets up the ArrayList.
    */
   public Print ()

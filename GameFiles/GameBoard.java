@@ -8,159 +8,160 @@ import java.util.*;
 import javax.swing.Timer;
 
 /**
- *This class is the main game panel and in-game actions are processed here.
- * Extends JPanel
+ * Creates the main game panel in which the user plays the game by moving the Element pieces.
+ * All game actions take place in this class.
  * 
  * @author Richard Dang and Benson Guo
  * @version 3.4, May 22th, 2014
  */
 public class GameBoard extends JPanel implements ActionListener, KeyListener
 {  
-  /*
+  /**
    * BufferedImage variable for background image.
    */
   private BufferedImage backgroundImage;
-  /*
-   *backgroundImage2-BufferedImage variable for 2nd background image of panel.
+  /**
+   *BufferedImage variable for 2nd background image of panel.
    **/
   private BufferedImage backgroundImage2;
-  /*
-   *backgroundImage2-BufferedImage variable for 2nd background image of panel.
+  /**
+   *BufferedImage variable for 2nd background image of panel.
    **/
   private BufferedImage backgroundImage3;
-  /*
+  /**
    * Array of JButtons for gameboard buttons.
    */
   JButton [] menuItems = new JButton [4];
-  /*
+  /**
    * JButton for name input button.
    */
   private JButton okButton;
-  /*
+  /**
    * JLabel displayed when compound is named correctly.
    */
   private JLabel correctLabel;
-  /*
+  /**
    * JLabel displayed when compound is named incorrectly.
    */
   private JLabel incorrectLabel;
-  /*
+  /**
    * JTextField for user to input compound name.
    */
   private JTextField tField;
-  /*
+  /**
    * JLabel to ask the user to name the compound.
    */
   private JLabel compoundLabel;
-  /*
+  /**
    * JLabel to display user score.
    */
   private JLabel scoreLabel;
-  /*
+  /**
    * String for the correct compound Name.
    */
   private String compoundName;
-  /*
+  /**
    * String for the difficulty.
    */
   private String level;
-  /*
+  /**
    * Static int variable to store user score.
    */
   static int score;
-  /*
+  /**
    * boolean variable to store whether the game is paused or not.
    */
   static boolean paused;
-  /*
+  /**
    * boolean variable to store whether the game was paused or not.
    */
   static boolean wasPaused; 
-  /*
+  /**
    * boolean variable to store whether the game is asking the user to name a compound.
    */
   private boolean askingCompound=false;
-  /*
+  /**
    *int variable to store the column of the element adjacent to controlLabel.
    */
   private int elementx2;
-  /*
+  /**
    *int variable to store the row of the element adjacent to controlLabel.
    */
   private int elementy2;
-  /*
+  /**
    *double variable to store the multiplier for score, based of level difficulty.
    */
   private double scoreMultiplier;
-  /*
+  /**
    *reference variable for JDialog
    */
   private JDialog d;
-  /*
+  /**
    *int variable to store whether or not the game is over.
    */
   private boolean gameOver;
-  /*
+  /**
    * 2d array of Element objects, which represents the board.
    */
   private Element[][] elementsOnBoard=new Element [12][9];
-  /*
+  /**
    * 2d array of JLabel objects, which represents the pictures of the elements on the board.
    */
   private JLabel [][] labelsOnBoard=new JLabel [12][9]; 
-  /*
+  /**
    * reference variable for the JLabel that is being moved by the arrow keys.
    */
   private JLabel controlLabel;
-  /*
+  /**
    * int variable for column of the JLabel that is being moved by the arrow keys.
    */
   private int controlLabelCol=4;
-  /*
+  /**
    * int variable for column of the JLabel that is being moved by the arrow keys.
    */
   private int controlLabelRow=11;
-  /*
+  /**
    * static reference variable for Timer object.
    */
   static Timer t;
-  /*
+  /**
    * static reference variable for Time object.
    */
   static Time l;
-  /*
+  /**
    * reference variable for ElementList object.
    */
   private ElementList e;
-  /*
+  /**
    * reference variable for KeyAdapter object for enter key.
    */
   private KeyAdapter keyAdapter;
-  /*
+  /**
    * String variable for compound symbol of element.
    */
   private String compoundSymbol;
-  /*
+  /**
    * int variable for number of questions answered correctly.
    */
   private int numCorrect;
-  /*
+  /**
    * int variable for number of questions answered incorrectly.
    */
   private int numWrong;
-  /*
+  /**
    * int variable for user choice.
    */
   private int result;
-  /*
+  /**
    * JButton variable for continue button.
    */
   private JButton continueButton;
   
-  /*
+  /**
    * Constructor for GameBoard which sets up the background, guis,and level.
    * ElementList object is instantiated and the key listener is added.
-   * score, numCorrect, and numWrong are intialized to 0.
+   * score, numCorrect, and numWrong are intialized to 0. Paused is set to false.
+   * The menu items are also set to enabled.
    */
   public GameBoard ()
   {
@@ -196,7 +197,9 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     t.start(); 
     score=0;
     updateScore();
-    paused=false;
+    paused = false;
+    TetristryApp.enableMI = true;
+    TetristryApp.enableDisableMenuItems ();
   }
   
   /**
@@ -263,7 +266,6 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     int counter = 0;
     try
     {  
-      //create images and resize
       BufferedImage news = ImageIO.read(new File( "../Images/NewGameButton.png"));
       BufferedImage resume = ImageIO.read(new File( "../Images/ResumeButton.png"));
       BufferedImage pause = ImageIO.read(new File( "../Images/PauseButton.png"));
@@ -350,7 +352,7 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     repaint();
   }
   
-  /*
+  /**
    * This method updates the score label with the new score value.
    */
   public void updateScore()
@@ -364,7 +366,7 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     add (scoreLabel);
   }
   
-  /*
+  /**
    * This method inserts the user score into the highscores.
    */
   public void saveScore ()
@@ -640,7 +642,6 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
    */
   public void checkCompound ()
   {
-    //check if compound can be formed
     Element adjacent=null;
     if (controlLabelCol<8&&e.canForm(elementsOnBoard[controlLabelRow][controlLabelCol],elementsOnBoard[controlLabelRow][controlLabelCol+1]))
     {
@@ -696,7 +697,7 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
       incorrectLabel.setVisible (true);
       addBarriers (controlLabelCol,controlLabelRow,elementx2,elementy2);
       repaintBoard();
-      if (numWrong < numCorrect)
+      if (numWrong < 2*numCorrect)
         numWrong++;
       
       if (LevelSelection.difficulty == 1)
@@ -705,8 +706,20 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
         l.seconds-=6;
       else 
         l.seconds-=9;
+      l.displayTime();
+      if (l.minutes==0&&l.seconds==0)
+      {
+        l.time.setText("0:00");
+        repaint();
+        t.stop();
+        l.t.stop();
+        endGame();
+        nextLevel();
+        return;
+      }
     }
     score=(int)(scoreMultiplier*(100*numCorrect-50*numWrong));
+    
     if (score<0)
       score=0;
     
@@ -718,6 +731,18 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     tField.setEditable (false);
     addNotify();    
     okButton.setEnabled (false);
+  }
+  
+  /**
+   * Disables all the buttons on the gameboard.
+   */
+  public void disableButtons ()
+  {
+    tField.setEditable (false);
+    okButton.setEnabled (false);
+    for (int x = 0; x<4;x++)
+      menuItems[x].setEnabled (false);
+    repaint ();
   }
   
   /**
@@ -752,6 +777,8 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     
     if (l.minutes==0 && l.seconds==0)
     {
+      t.stop();
+      l.t.stop();
       endGame ();
       nextLevel ();
     }
@@ -835,8 +862,9 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     }
   }
   
-  /*
-   * This method advances the game to the next level if not already on the highest difficulty. Else, it displays a congradulatory message.
+  /**
+   * This method advances the game to the next level if not already on the highest difficulty. 
+   * Else, it displays a congradulatory message. During this time, the menu items are enabled.
    */
   public void nextLevel ()
   {    
@@ -849,11 +877,9 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
       gameOver = true;
       dialogBoxes ("You Win!", "Thanks for playing Tetristry!");
     }
-    tField.setEditable (false);
-    okButton.setEnabled (false);
   }
   
-  /*
+  /**
    * This method creates a dialog box based on the String variables passed in as parameters.
    * 
    * @param dLabel-JLabel for text on dialog box.
@@ -893,11 +919,15 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     {}
   }
   
-  /*
+  /**
    * This method ends the correct game by stopping the timer and saving the score.
+   * During this time, all buttons are disabled.
    */
   public void endGame()
   {
+    TetristryApp.enableMI = false;
+    TetristryApp.enableDisableMenuItems ();
+    disableButtons ();
     t.stop();
     l.t.stop ();
     controlLabel=null;
@@ -905,7 +935,7 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
       saveScore();
   }
   
-  /*
+  /**
    * This element creates a new element for the user to control. The element will start dropping from the 12th column and 5th row. The new element is added onto the label and element 2d arrays.
    * 
    * @param newElement-element variable for the new element.
@@ -923,6 +953,7 @@ public class GameBoard extends JPanel implements ActionListener, KeyListener
     add (labelsOnBoard[11][4]);
     repaintBoard();        
   }
+  
   
   
   /**

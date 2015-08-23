@@ -8,38 +8,37 @@ import java.util.*;
 
 /**
  *This method is the Instructions.
- * Extends JPanel
  * 
  * @author Richard Dang and Benson Guo
  * @version 1.3, May 22th, 2014
  */
 public class Instructions extends JPanel implements ActionListener
 { 
-  /*
+  /**
    *backgroundImage-BufferedImage variable for background image of panel.
    **/
   private BufferedImage backgroundImage;
-  /*
+  /**
    *backgroundImage2-BufferedImage variable for 2nd background image of panel.
    **/
   private BufferedImage backgroundImage2;
-  /*
+  /**
    *backgroundImage2-BufferedImage variable for 2nd background image of panel.
    **/
   private BufferedImage backgroundImage3;
-  /*
+  /**
    * returnButton-reference variable for JLabel used for return to menu button.
    **/
   private JButton returnButton;
-  /*
+  /**
    * nextButton-reference variable for JLabel used for next page button.
    **/
   private JButton nextButton;
-  /*
+  /**
    * previousButton-reference variable for JLabel used for previous page button.
    **/
   private JButton previousButton;
-  /*
+  /**
    * changeBackground-boolean variable to store whether or not to change background.
    **/
   private int changeBackground =1;
