@@ -1,0 +1,10 @@
+Li
+Na
+K
+Cu
+Ba
+Ca
+Al
+Pb
+Fe
+Mg

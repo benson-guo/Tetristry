@@ -1,0 +1,46 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.Timer;
+
+public class Time implements ActionListener
+{
+  JLabel time = new JLabel ("3:00");
+  static Timer t;
+  int minutes = 3;
+  int seconds = 1;
+  
+  public Time ()
+  {
+    t = new Timer (1000,this);
+    t.setInitialDelay (0);
+    t.start ();
+  }
+  
+  public void displayTime ()
+  {
+    time.setFont (new Font ("Arial", Font.BOLD, 22));
+      time.setForeground (Color.WHITE);
+    time.setBounds(new Rectangle(new Point(670, 160), time.getPreferredSize())); 
+    
+    if (minutes == 0 && seconds ==0)
+    t.stop ();
+    
+    if (--seconds < 0)
+    {
+      seconds = 59;
+      minutes--;
+    }
+    
+    if (seconds < 10)
+      time.setText (String.valueOf (minutes)+ ":0"+String.valueOf (seconds));
+    else
+      time.setText (String.valueOf (minutes)+ ":"+String.valueOf (seconds));
+    
+  }
+  
+  public void actionPerformed (ActionEvent ae)
+  {
+    displayTime ();    
+  }
+}

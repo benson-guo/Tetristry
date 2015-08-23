@@ -1,0 +1,10 @@
+C
+N
+O
+F
+P
+S
+Cl
+Se
+Br
+I
