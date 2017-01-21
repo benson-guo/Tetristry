@@ -1,5 +1,9 @@
 README - TETRISTRY Version 3.5 2014/06/12
 
+TETRISTRY
+
+	Tetristry is a Chemistry software with the purpose of introducing the basics of chemical compound nomenclature to high school students. The game provides an interative environment that will help players develop a proficient ability to create and name compounds -- fundamental for further studies in Chemistry.
+
 	
 INSTALLATION
 
