@@ -28,7 +28,7 @@ TROUBLESHOOTING
 
 CREDITS AND ACKNOWLEDGEMENT
 
-	Tetristry by Richard Dang and Benson Guo. 
+	Tetristry by Benson Guo and Richard Dang. 
 
 COPYRIGHT
 
